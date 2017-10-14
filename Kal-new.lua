@@ -1,3 +1,5 @@
+-- Czesc Krzysiu
+
 -- M1
 --	G1	Start
 --	G10	Leczenie off
