@@ -1,13 +1,13 @@
 -- Czesc Krzysiu
---czesc
+-- hejka
 -- M1
 --	G1	Start
 --	G10	Leczenie off
 --	G11	Leczenie - cure
 --	G12	Leczenie - group cure
 
--- M2
---	G1	Pozycja Inkaska
+-- M2  zapisywanie pozycji
+--	G1	Pozycja Inkaska - wylaczone
 --	G2	Pozycja FOD 1
 --	G3	Pozycja FOD 2
 --	G4	Pozycja Prist 1
@@ -33,22 +33,22 @@
 --	G10	Rzuc Buffy
 
 
-avgGlobalX = 1
-avgGlobalY = 1
+avgGlobalX = 40.985023809524 hits = 0
+avgGlobalY = 72.881376984127 hits = 0
 
 --pause = true
 eXecute = true
 msgDelay = 5000
 msgTime = 0
 
-inkaskaUse = true
+inkaskaUse = false
 inkaskaTime = 0
 inkaskaDelay = 5000
 inkaskaX = 64481 
 inkaskaY = 48792
 
---fodDelay = 20 * 60 * 1000 + 1000
-fodDelay = 40000
+fodDelay = 20 * 60 * 1000 + 1000
+--fodDelay = 40000
 
 pod1Use = true
 fod1X = 40515
@@ -60,8 +60,8 @@ fod2X = 16394
 fod2Y = 43669
 fod2Time = 0
 
---pristDelay = 2 * 60 * 1000 + 30 * 1000
-pristDelay = 5000
+pristDelay = 2 * 60 * 1000 + 30 * 1000
+--pristDelay = 5000
 pristTime = 0
 pristActive = 0
 
@@ -114,7 +114,7 @@ medytacjaDelay = 12 * 60 * 1000 + 30 * 1000 + 3000
 medytacjaTime = 0
 medytacjaN = 7 --15744
 
-buffyDelay = 28 * 60 * 1000 + 500
+buffyDelay = 23 * 60 * 1000 + 500
 buffyMinDelay = 3600
 buffyUse = true
 buffyTime = 0
@@ -138,7 +138,7 @@ function RunScript()
 	local msg = GetDate("%X") .. "   Program dziala - " .. GetRunningTime()
 	--while not (pause) do
 	while true do
-		if not (GetMKeyState() == 1) then
+		if not (GetMKeyState("kb") == 1) then
 			eXecute = false
 			--pause = true
 			break
@@ -202,7 +202,7 @@ function OnEvent(event, arg)
 	
     OutputLogMessage("event = %s, arg = %s, pause = %s, eXecute = %s\n", event, arg, tostring(pause), tostring(eXecute))
 
-	local mkey = GetMKeyState()
+	local mkey = GetMKeyState("kb")
 	
 	if (eXecute == false and mkey == 1) then
 		eXecute = true
@@ -322,7 +322,7 @@ function RzucFod1()
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem FOD1"
 		LCDMessage(msg)
-		fod1Time = GetRunningTime()
+		fod1Time = GetRunningTime() + math.random( 30*1000 )
 	end
 end
 
@@ -334,7 +334,7 @@ function RzucFod2()
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem FOD2"
 		LCDMessage(msg)
-		fod2Time = GetRunningTime()
+		fod2Time = GetRunningTime() + math.random( 30*1000 )
 	end
 end
 
@@ -360,7 +360,7 @@ function RzucNaPrista1()
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Prist 1"
 		LCDMessage(msg)
-		pristTime = GetRunningTime()
+		pristTime = GetRunningTime() + math.random( 60*1000 )
 		pristActive = 1
 	else
 		RzucNaPrista2()
@@ -375,7 +375,7 @@ function RzucNaPrista2()
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Prist 2"
 		LCDMessage(msg)
-		pristTime = GetRunningTime()
+		pristTime = GetRunningTime() + math.random( 60*1000 )
 		pristActive = 2
 	else
 		RzucNaPrista3()
@@ -390,7 +390,7 @@ function RzucNaPrista3()
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Prist 3"
 		LCDMessage(msg)
-		pristTime = GetRunningTime()
+		pristTime = GetRunningTime() + math.random( 60*1000 )
 		pristActive = 3
 	else
 		RzucNaPrista4()
@@ -405,7 +405,7 @@ function RzucNaPrista4()
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Prist 4"
 		LCDMessage(msg)
-		pristTime = GetRunningTime()
+		pristTime = GetRunningTime() + math.random( 60*1000 )
 		pristActive = 4
 	else
 		RzucNaPrista5()
@@ -474,7 +474,7 @@ function Medytacja()
 		PressAndReleaseMouseButton(1)
 		local msg = GetDate("%X") .. "Urzylem medytacji"
 		LCDMessage(msg)
-		medytacjaTime = GetRunningTime()
+		medytacjaTime = GetRunningTime() + math.random( 60*1000 )
 	end
 end
 
@@ -486,7 +486,7 @@ function GroupCure()
 		Sleep(100)
 		PressAndReleaseMouseButton(1)
 		--Sleep(3000)
-		groupCureTime = GetRunningTime()
+		groupCureTime = GetRunningTime() + math.random( 2000 )
 		maTime = groupCureTime + groupCureMinDelay
 	end
 end
@@ -519,7 +519,7 @@ function Buffy()
 				ReturnTo(maActiveSkillX, maActiveSkillY)
 				Sleep(100)
 				PressAndReleaseMouseButton(2)
-				maTime = GetRunningTime + buffyMinDelay
+				maTime = GetRunningTime() + buffyMinDelay + math.random( 2000 )
 				--Sleep(3600)
 				--buffyTT[i] = GetRunningTime()
 				local msg = GetDate("%X") .. "Rzucilem: " .. buffyName[i]
@@ -531,7 +531,7 @@ function Buffy()
 			--	buffyTime = GetRunningTime()
 			--end
 		end
-		buffyTime = GetRunningTime()
+		buffyTime = GetRunningTime() + math.random( 5*60*1000 )
 	end
 end
 
