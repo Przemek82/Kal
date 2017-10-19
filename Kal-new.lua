@@ -195,7 +195,7 @@ function RunScript()
 end
 
 function LCDMessage(lMsg)
-	OutputLCDMessage(lMmsg, 600000)
+	OutputLCDMessage(lMsg, 600000)
 end
 
 function OnEvent(event, arg)
