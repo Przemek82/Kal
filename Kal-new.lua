@@ -32,10 +32,11 @@
 --	G9	Uzyj Medytacji
 --	G10	Rzuc Buffy
 
-
+uzadzenie = "kb"
+-- uzadzenie = "lhc"
 avgGlobalX = 40.985023809524 
 avgGlobalY = 72.881376984127
- hits = 0
+hits = 0
 
 --pause = true
 eXecute = true
@@ -91,7 +92,7 @@ maActiveSkillN = 0
 maActiveSkillX = 22834
 maActiveSkillY = 2545
 maActiveSkillTime = 0
-skillBarDiff = 2640
+skillBarDiff = 3047
 
 groupCureUse = false
 groupCureDelay = 5000
@@ -125,6 +126,7 @@ buffyTime = 0
 --speed = 4 --7934
 buffyName 	= { "def",	"agi", "hp", "speed"}
 buffyNo 	= { 	5,		6,	  8, 	  4} 
+--buffyNo 	= { 	1,		2,	  3, 	  4}
 buffyTT 	= { 	0,		0,	  0, 	  0} 
 
 buffyActiveCharX = nil
@@ -139,7 +141,7 @@ function RunScript()
 	local msg = GetDate("%X") .. "   Program dziala - " .. GetRunningTime()
 	--while not (pause) do
 	while true do
-		if not (GetMKeyState("kb") == 1) then
+		if not (GetMKeyState(uzadzenie) == 1) then
 			eXecute = false
 			--pause = true
 			break
@@ -201,9 +203,9 @@ end
 
 function OnEvent(event, arg)
 	
-    OutputLogMessage("event = %s, arg = %s, pause = %s, eXecute = %s\n", event, arg, tostring(pause), tostring(eXecute))
+    --OutputLogMessage("event = %s, arg = %s, pause = %s, eXecute = %s\n", event, arg, tostring(pause), tostring(eXecute))
 
-	local mkey = GetMKeyState("kb")
+	local mkey = GetMKeyState(uzadzenie)
 	
 	if (eXecute == false and mkey == 1) then
 		eXecute = true
@@ -267,6 +269,7 @@ function OnEvent(event, arg)
 				-- PT Buffer Active Char
 				buffyActiveCharX, buffyActiveCharY = GetMousePosition()
 				LCDMessage("Buffy (" .. buffyActiveCharX .. ", " .. buffyActiveCharY .. ")")
+				OutputLogMessage("DiffX = %s, DiffY = %s\n", tostring(buffyActiveCharX), tostring(buffyActiveCharY))
 			elseif (arg == 10) then
 				-- MA Active Skill
 				maActiveSkillX, maActiveSkillY = GetMousePosition()
@@ -357,7 +360,7 @@ function RzucNaPrista1()
 	if (prist1Use and prist1X and prist1Y) then
 		ReturnTo(prist1X, prist1Y) 
 		Sleep(100)
-		PressAndReleaseMouseButton(2)
+		PressAndReleaseMouseButton(3)
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Prist 1"
 		LCDMessage(msg)
@@ -372,7 +375,7 @@ function RzucNaPrista2()
 	if (prist2Use and prist2X and prist2Y) then
 		ReturnTo(prist2X, prist2Y) 
 		Sleep(100)
-		PressAndReleaseMouseButton(2)
+		PressAndReleaseMouseButton(3)
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Prist 2"
 		LCDMessage(msg)
@@ -387,7 +390,7 @@ function RzucNaPrista3()
 	if (prist3Use and prist3X and prist3Y) then
 		ReturnTo(prist3X, prist3Y) 
 		Sleep(100)
-		PressAndReleaseMouseButton(2)
+		PressAndReleaseMouseButton(3)
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Prist 3"
 		LCDMessage(msg)
@@ -402,7 +405,7 @@ function RzucNaPrista4()
 	if (prist4Use and prist4X and prist4Y) then
 		ReturnTo(prist4X, prist4Y) 
 		Sleep(100)
-		PressAndReleaseMouseButton(2)
+		PressAndReleaseMouseButton(3)
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Prist 4"
 		LCDMessage(msg)
@@ -417,7 +420,7 @@ function RzucNaPrista5()
 	if (prist5Use and prist5X and prist5Y) then
 		ReturnTo(prist5X, prist5Y) 
 		Sleep(100)
-		PressAndReleaseMouseButton(2)
+		PressAndReleaseMouseButton(3)
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Prist 5"
 		LCDMessage(msg)
@@ -455,7 +458,7 @@ function LeczPojedynczym()
 		if (cureCharX and cureCharY) then
 			ReturnTo(cureCharX, cureCharY)
 			Sleep(100)
-			PressAndReleaseMouseButton(2)
+			PressAndReleaseMouseButton(3)
 			cureTime = GetRunningTime()
 			maTime = cureTime + cureMinDelay
 		elseif (cureCurrent == 1) then
@@ -508,18 +511,20 @@ function Buffy()
 		for i, bNo in ipairs(buffyNo) do
 			--if (buffyTT[i] + buffyDelay < GetRunningTime()) then
 				if (maTime > GetRunningTime()) then
-					Sleep(maTime - GetRunningTime)
+					Sleep(maTime - GetRunningTime())
 				end
 				local cureX = maActiveSkillX
 				local cureY = maActiveSkillY + (bNo * skillBarDiff)
 				ReturnTo(cureX, cureY)
 				Sleep(100)
-				--PressAndReleaseMouseButton(1)
+				PressAndReleaseMouseButton(1)
+                  Sleep(100)
 				maActiveSkillN = bNo
-				
-				ReturnTo(maActiveSkillX, maActiveSkillY)
+				--OutputLogMessage("DiffX = %s, DiffY = %s\n", tostring(cureX), tostring(cureY))
+				--Sleep(5000)
+				ReturnTo(buffyActiveCharX , buffyActiveCharY)
 				Sleep(100)
-				PressAndReleaseMouseButton(2)
+				PressAndReleaseMouseButton(3)
 				maTime = GetRunningTime() + buffyMinDelay + math.random( 2000 )
 				--Sleep(3600)
 				--buffyTT[i] = GetRunningTime()
@@ -579,10 +584,10 @@ function ReturnTo(pointX, pointY)
 	
 	Sleep(50)
 	testX, testY = GetMousePosition()
-	OutputLogMessage("DiffX = %s, DiffY = %s\n", tostring(math.abs(testX - pointX)/avgGlobalX), tostring(math.abs(testY - pointY)/avgGlobalY))
+	--OutputLogMessage("DiffX = %s, DiffY = %s\n", tostring(math.abs(testX - pointX)/avgGlobalX), tostring(math.abs(testY - pointY)/avgGlobalY))
 	
 	if (hits < 4) then
-		if (((math.abs(testX - pointX)/avgGlobalX) > 3) or (math.abs(testY - pointY)/avgGlobalY)) then
+		if (((math.abs(testX - pointX)/avgGlobalX) > 3) or (math.abs(testY - pointY)/avgGlobalY) > 3) then
 			hits = hits + 1
 			ReturnTo(pointX, pointY)
 		end

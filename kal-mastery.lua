@@ -259,7 +259,7 @@ function OnEvent(event, arg)
 				Mag2RzucNaGianta1()
 			elseif (arg == 9) then
 				mag2giant2Uzywaj = true
-				Mag2RzucNaGianta1()	
+				Mag2RzucNaGianta2()	
 			
 			elseif (arg == 10) then
 				buffyUse = true
@@ -278,7 +278,7 @@ function RzucFod1()
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem FOD1"
 		LCDMessage(msg)
-		fod1Time = GetRunningTime()
+		fod1Time = GetRunningTime()  + math.random( 30*1000 )
 	end
 end
 
@@ -302,11 +302,11 @@ function Mag1RzucNaGianta1()
 	if (mag1giant1Uzywaj and mag1giant1X and mag1giant1Y) then
 		ReturnTo(mag1giant1X, mag1giant1Y) 
 		Sleep(100)
-		PressAndReleaseMouseButton(2)
+		PressAndReleaseMouseButton(3)
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Giant 1"
 		LCDMessage(msg)
-		mag1giantTime = GetRunningTime()
+		mag1giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag1giantActive = 1
 	else
 		Mag1RzucNaGianta2()
@@ -317,11 +317,11 @@ function Mag1RzucNaGianta2()
 	if (mag1giant2Uzywaj and mag1giant2X and mag1giant2Y) then
 		ReturnTo(mag1giant2X, mag1giant2Y) 
 		Sleep(100)
-		PressAndReleaseMouseButton(2)
+		PressAndReleaseMouseButton(3)
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Giant 2"
 		LCDMessage(msg)
-		mag1giantTime = GetRunningTime()
+		mag1giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag1giantActive = 2
 	else
 		Mag1RzucNaGianta3()
@@ -332,11 +332,11 @@ function Mag1RzucNaGianta3()
 	if (mag1giant3Uzywaj and mag1giant3X and mag1giant3Y) then
 		ReturnTo(mag1giant3X, mag1giant3Y) 
 		Sleep(100)
-		PressAndReleaseMouseButton(2)
+		PressAndReleaseMouseButton(3)
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Giant 3"
 		LCDMessage(msg)
-		mag1giantTime = GetRunningTime()
+		mag1giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag1giantActive = 3
 	else
 		Mag1RzucNaGianta4()
@@ -347,11 +347,11 @@ function Mag1RzucNaGianta4()
 	if (mag1giant4Uzywaj and mag1giant4X and mag1giant4Y) then
 		ReturnTo(mag1giant4X, mag1giant4Y) 
 		Sleep(100)
-		PressAndReleaseMouseButton(2)
+		PressAndReleaseMouseButton(3)
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Giant 4"
 		LCDMessage(msg)
-		mag1giantTime = GetRunningTime()
+		mag1giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag1giantActive = 4
 	else
 		Mag1RzucNaGianta5()
@@ -362,11 +362,11 @@ function Mag1RzucNaGianta5()
 	if (mag1giant5Uzywaj and mag1giant5X and mag1giant5Y) then
 		ReturnTo(mag1giant5X, mag1giant5Y) 
 		Sleep(100)
-		PressAndReleaseMouseButton(2)
+		PressAndReleaseMouseButton(3)
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Giant 5"
 		LCDMessage(msg)
-		mag1giantTime = GetRunningTime()
+		mag1giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag1giantActive = 5
 	else
 		Mag1RzucNaGianta1()
@@ -392,11 +392,11 @@ function Mag2RzucNaGianta1()
 	if (mag2giant1Uzywaj and mag2giant1X and mag2giant1Y) then
 		ReturnTo(mag2giant1X, mag2giant1Y) 
 		Sleep(100)
-		PressAndReleaseMouseButton(2)
+		PressAndReleaseMouseButton(3)
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Giant 1"
 		LCDMessage(msg)
-		mag2giantTime = GetRunningTime()
+		mag2giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag2giantActive = 1
 	else
 		Mag2RzucNaGianta2()
@@ -407,11 +407,11 @@ function Mag2RzucNaGianta2()
 	if (mag2giant2Uzywaj and mag2giant2X and mag2giant2Y) then
 		ReturnTo(mag2giant2X, mag2giant2Y) 
 		Sleep(100)
-		PressAndReleaseMouseButton(2)
+		PressAndReleaseMouseButton(3)
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Giant 2"
 		LCDMessage(msg)
-		mag2giantTime = GetRunningTime()
+		mag2giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag2giantActive = 2
 	else
 		Mag2RzucNaGianta3()
@@ -422,11 +422,11 @@ function Mag2RzucNaGianta3()
 	if (mag2giant3Uzywaj and mag2giant3X and mag2giant3Y) then
 		ReturnTo(mag2giant3X, mag2giant3Y) 
 		Sleep(100)
-		PressAndReleaseMouseButton(2)
+		PressAndReleaseMouseButton(3)
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Giant 3"
 		LCDMessage(msg)
-		mag2giantTime = GetRunningTime()
+		mag2giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag2giantActive = 3
 	else
 		Mag2RzucNaGianta4()
@@ -437,11 +437,11 @@ function Mag2RzucNaGianta4()
 	if (mag2giant4Uzywaj and mag2giant4X and mag2giant4Y) then
 		ReturnTo(mag2giant4X, mag2giant4Y) 
 		Sleep(100)
-		PressAndReleaseMouseButton(2)
+		PressAndReleaseMouseButton(3)
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Giant 4"
 		LCDMessage(msg)
-		mag2giantTime = GetRunningTime()
+		mag2giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag2giantActive = 4
 	else
 		Mag2RzucNaGianta5()
@@ -452,11 +452,11 @@ function Mag2RzucNaGianta5()
 	if (mag2giant5Uzywaj and mag2giant5X and mag2giant5Y) then
 		ReturnTo(mag2giant5X, mag2giant5Y) 
 		Sleep(100)
-		PressAndReleaseMouseButton(2)
+		PressAndReleaseMouseButton(3)
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem Giant 5"
 		LCDMessage(msg)
-		mag2giantTime = GetRunningTime()
+		mag2giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag2giantActive = 5
 	else
 		Mag2RzucNaGianta1()
