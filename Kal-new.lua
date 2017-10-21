@@ -65,7 +65,7 @@ fod2Time = 0
 pristDelay = 2 * 60 * 1000 + 30 * 1000
 --pristDelay = 5000
 pristTime = 0
-pristActive = 0
+pristActive = 1
 
 prist1Use = true
 prist1X = 27791
@@ -343,91 +343,39 @@ function RzucFod2()
 end
 
 function RzucNaPrista()
-	if (pristActive == 0 or pristActive == 5) then
-		RzucNaPrista1()
-	elseif (pristActive == 1) then
-		RzucNaPrista2()
+	if (pristActive == 1) then
+		RzucLa(prist1Use, prist1X, prist1Y)
+
 	elseif (pristActive == 2) then
-		RzucNaPrista3()
+		RzucLa(prist2Use, prist2X, prist2Y)
+
 	elseif (pristActive == 3) then
-		RzucNaPrista4()
+		RzucLa(prist3Use, prist3X, prist3Y)
+
 	elseif (pristActive == 4) then
-		RzucNaPrista5()
+		RzucLa(prist4Use, prist4X, prist4Y)
+
+	elseif (pristActive == 5) then
+		RzucLa(prist5Use, prist5X, prist5Y)
 	end
 end
 
-function RzucNaPrista1()
-	if (prist1Use and prist1X and prist1Y) then
-		ReturnTo(prist1X, prist1Y) 
+function RzucLa(pristUse, pristX, pristY)
+	if (pristUse and pristX and pristY) then
+		ReturnTo(pristX, pristY) 
 		Sleep(100)
 		PressAndReleaseMouseButton(3)
 		--ClearLCD()
-		local msg = GetDate("%X") .. " - Rzucilem Prist 1"
+		
+		local msg = GetDate("%X") .. " - Rzucilem na Prista: " .. tostring(pristActive)
 		LCDMessage(msg)
 		pristTime = GetRunningTime() + math.random( 60*1000 )
-		pristActive = 1
-	else
-		RzucNaPrista2()
-	end
-end
-
-function RzucNaPrista2()
-	if (prist2Use and prist2X and prist2Y) then
-		ReturnTo(prist2X, prist2Y) 
-		Sleep(100)
-		PressAndReleaseMouseButton(3)
-		--ClearLCD()
-		local msg = GetDate("%X") .. " - Rzucilem Prist 2"
-		LCDMessage(msg)
-		pristTime = GetRunningTime() + math.random( 60*1000 )
-		pristActive = 2
-	else
-		RzucNaPrista3()
-	end
-end
-
-function RzucNaPrista3()
-	if (prist3Use and prist3X and prist3Y) then
-		ReturnTo(prist3X, prist3Y) 
-		Sleep(100)
-		PressAndReleaseMouseButton(3)
-		--ClearLCD()
-		local msg = GetDate("%X") .. " - Rzucilem Prist 3"
-		LCDMessage(msg)
-		pristTime = GetRunningTime() + math.random( 60*1000 )
-		pristActive = 3
-	else
-		RzucNaPrista4()
-	end
-end
-
-function RzucNaPrista4()
-	if (prist4Use and prist4X and prist4Y) then
-		ReturnTo(prist4X, prist4Y) 
-		Sleep(100)
-		PressAndReleaseMouseButton(3)
-		--ClearLCD()
-		local msg = GetDate("%X") .. " - Rzucilem Prist 4"
-		LCDMessage(msg)
-		pristTime = GetRunningTime() + math.random( 60*1000 )
-		pristActive = 4
-	else
-		RzucNaPrista5()
-	end
-end
-
-function RzucNaPrista5()
-	if (prist5Use and prist5X and prist5Y) then
-		ReturnTo(prist5X, prist5Y) 
-		Sleep(100)
-		PressAndReleaseMouseButton(3)
-		--ClearLCD()
-		local msg = GetDate("%X") .. " - Rzucilem Prist 5"
-		LCDMessage(msg)
-		pristTime = GetRunningTime()
-		pristActive = 5
-	else
-		RzucNaPrista1()
+		
+		if (pristActive < 5)
+			pristActive = pristActive + 1
+		else
+			pristActive = 1
+		end
 	end
 end
 
@@ -518,7 +466,7 @@ function Buffy()
 				ReturnTo(cureX, cureY)
 				Sleep(100)
 				PressAndReleaseMouseButton(1)
-                  Sleep(100)
+                Sleep(100)
 				maActiveSkillN = bNo
 				--OutputLogMessage("DiffX = %s, DiffY = %s\n", tostring(cureX), tostring(cureY))
 				--Sleep(5000)
