@@ -15,13 +15,17 @@ eXecute = true
 
 
 
-fodDelay = 20 * 60 * 1000 + 1000
+fodDelay = 10 * 1000 + 1000
 -- fodDelay = 40000
 
 -- Uzywaj fod1 tak
 fod1uzywaj = true
-fod1X = 40515
-fod1Y = 43482
+pk1X = 0
+pk1Y = 0
+pk2X = 0
+pk2Y = 0
+pk3X = 0
+pk4Y = 0
 fod1Time = 0
 
 
@@ -101,29 +105,51 @@ function OnEvent(event, arg)
 
 		-- jezeli klawisz M2 aktywny
 		elseif (mkey == 2) then
-			-- i uzyty klawisz G2 
-			if (arg == 2) then
-				-- zapisz pozycjekursora na ekranie do  FOD1
-				fod1X, fod1Y = GetMousePosition()
-				LCDMessage("FOD1 (" .. fod1X .. ", " .. fod1Y .. ")")
-			
-			
+			-- i uzyty klawisz G
+			if (arg == 1) then
+				pk1X, pk1Y = GetMousePosition()
+			elseif (arg == 2)
+				pk2X, pk2Y = GetMousePosition()
+			elseif (arg == 3)
+				pk3X, pk3Y = GetMousePosition()
 			end
 		end
 	end
 	
 end
 
-function RzucFod1(fod1X, fod1Y)
-	if (fod1X and fod1Y) then
-		ReturnTo(fod1X, fod1Y)
-		Sleep(100)
-		PressAndReleaseMouseButton(1)
-		--ClearLCD()
-		local msg = GetDate("%X") .. " - Rzucilem FOD1"
-		LCDMessage(msg)
-		fod1Time = GetRunningTime()
-	end
+function RzucFod1()
+	
+	Sleep(100)
+	ReturnTo(pk1X, pk1Y)
+	Sleep(100)
+
+	PressAndReleaseMouseButton(1)
+
+	Sleep(2000)
+
+	PressAndReleaseMouseButton(1)
+
+	Sleep(2000)
+	
+	ReturnTo(pk2X, pk2Y)
+	Sleep(100)
+
+	PressAndReleaseMouseButton(1)
+
+	Sleep(2000)
+
+	PressAndReleaseMouseButton(1)
+
+	Sleep(2000)
+
+	ReturnTo(pk3X, pk3Y)
+	Sleep(100)
+
+	PressAndReleaseMouseButton(1)
+
+	fod1Time = GetRunningTime()
+	
 end
 
 
