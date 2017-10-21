@@ -33,8 +33,9 @@
 --	G10	Rzuc Buffy
 
 
-avgGlobalX = 40.985023809524 hits = 0
-avgGlobalY = 72.881376984127 hits = 0
+avgGlobalX = 40.985023809524 
+avgGlobalY = 72.881376984127
+ hits = 0
 
 --pause = true
 eXecute = true

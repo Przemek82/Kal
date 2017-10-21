@@ -29,10 +29,17 @@
 --	G9	Mag 2 Rzuc shni na gianta 2
 --	G10	Rzuc Buffy \ usun
 
+uzadzenie = "kb"
+-- uzadzenie = "lhc"
 
+--monitor19
 avgGlobalX = 40.985023809524
 avgGlobalY = 72.881376984127
 
+-- wirtualka lekarz i tarcza
+--avgGlobalX = 68.301785185185
+--avgGlobalY = 109.21233333333
+hits = 0
 
 eXecute = true
 
@@ -115,7 +122,7 @@ function RunScript()
 	while true do
 
 		-- jezeli MKey rozny od M1 
-		if not (GetMKeyState("lhc") == 1) then
+		if not (GetMKeyState(uzadzenie) == 1) then
 
 			-- ignoruj klawisze G
 			eXecute = false
@@ -161,7 +168,7 @@ function OnEvent(event, arg)
     -- OutputLogMessage("event = %s, arg = %s, pause = %s, eXecute = %s\n", event, arg, tostring(pause), tostring(eXecute))
 
 	-- pobierz status klawisza M
-	local mkey = GetMKeyState("lhc")
+	local mkey = GetMKeyState(uzadzenie)
 	
 	-- jezeli wykonaj klawiszeG ustawione na ignoruj i M1 aktywny 
 	if (eXecute == false and mkey == 1) then
