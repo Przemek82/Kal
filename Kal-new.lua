@@ -92,7 +92,7 @@ maActiveSkillN = 0
 maActiveSkillX = 22834
 maActiveSkillY = 2545
 maActiveSkillTime = 0
-skillBarDiff = 3047
+skillBarDiff = 42 * avgGlobalY
 
 groupCureUse = false
 groupCureDelay = 5000
@@ -116,7 +116,7 @@ medytacjaDelay = 12 * 60 * 1000 + 30 * 1000 + 3000
 medytacjaTime = 0
 medytacjaN = 7 --15744
 
-buffyDelay = 23 * 60 * 1000 + 500
+buffyDelay = 0 * 23 * 60 * 1000 + 500
 buffyMinDelay = 3600
 buffyUse = true
 buffyTime = 0
@@ -175,6 +175,12 @@ function RunScript()
 			if (pristTime + pristDelay < GetRunningTime()) then
 				RzucNaPrista()
 			end
+
+			if (buffyUse) then
+				if (buffyTime + buffyDelay) < GetRunningTime()) then
+					Buffy()
+				end
+			end	
 			
 			
 			
@@ -293,19 +299,19 @@ function OnEvent(event, arg)
 				RzucFod2()
 			elseif (arg == 4) then
 				prist1Use = true
-				RzucNaPrista1()
+				RzucLa(prist1Use, prist1X, prist1Y)
 			elseif (arg == 5) then
 				prist2Use = true
-				RzucNaPrista2()
+				RzucLa(prist2Use, prist2X, prist2Y)
 			elseif (arg == 6) then
 				prist3Use = true
-				RzucNaPrista3()
+				RzucLa(prist3Use, prist3X, prist3Y)
 			elseif (arg == 7) then
 				prist4Use = true
-				RzucNaPrista4()
+				RzucLa(prist4Use, prist4X, prist4Y)
 			elseif (arg == 8) then
 				prist5Use = true
-				RzucNaPrista5()
+				RzucLa(prist5Use, prist5X, prist5Y)
 			elseif (arg == 9) then
 				medytacjaUse = true
 				Medytacja()
@@ -334,7 +340,7 @@ function RzucFod2()
 	if (fod2X and fod2Y) then
 		ReturnTo(fod2X, fod2Y)
 		Sleep(100)
-		--PressAndReleaseMouseButton(1)
+		PressAndReleaseMouseButton(1)
 		--ClearLCD()
 		local msg = GetDate("%X") .. " - Rzucilem FOD2"
 		LCDMessage(msg)
@@ -370,12 +376,12 @@ function RzucLa(pristUse, pristX, pristY)
 		local msg = GetDate("%X") .. " - Rzucilem na Prista: " .. tostring(pristActive)
 		LCDMessage(msg)
 		pristTime = GetRunningTime() + math.random( 60*1000 )
-		
-		if (pristActive < 5)
-			pristActive = pristActive + 1
-		else
-			pristActive = 1
-		end
+	end
+
+	if (pristActive < 5)
+		pristActive = pristActive + 1
+	else
+		pristActive = 1
 	end
 end
 
@@ -439,7 +445,7 @@ function GroupCure()
 		PressAndReleaseMouseButton(1)
 		--Sleep(3000)
 		groupCureTime = GetRunningTime() + math.random( 2000 )
-		maTime = groupCureTime + groupCureMinDelay
+		maTime = groupRunningTime + groupCureMinDelay
 	end
 end
 

@@ -25,7 +25,7 @@ pk1Y = 0
 pk2X = 0
 pk2Y = 0
 pk3X = 0
-pk4Y = 0
+pk3Y = 0
 fod1Time = 0
 
 
@@ -100,7 +100,8 @@ function OnEvent(event, arg)
 			-- i uzyty klawisz G1 
 			if (arg == 1) then
 				-- wlacz skrypt
-				RunScript()
+				--RunScript()
+				RzucFod1
 			end
 
 		-- jezeli klawisz M2 aktywny
@@ -108,9 +109,9 @@ function OnEvent(event, arg)
 			-- i uzyty klawisz G
 			if (arg == 1) then
 				pk1X, pk1Y = GetMousePosition()
-			elseif (arg == 2)
+			elseif (arg == 2) then
 				pk2X, pk2Y = GetMousePosition()
-			elseif (arg == 3)
+			elseif (arg == 3) then
 				pk3X, pk3Y = GetMousePosition()
 			end
 		end
@@ -196,10 +197,10 @@ function ReturnTo(pointX, pointY)
 	
 	Sleep(50)
 	testX, testY = GetMousePosition()
-	OutputLogMessage("DiffX = %s, DiffY = %s\n", tostring(math.abs(testX - pointX)/avgGlobalX), tostring(math.abs(testY - pointY)/avgGlobalY))
+	--OutputLogMessage("DiffX = %s, DiffY = %s\n", tostring(math.abs(testX - pointX)/avgGlobalX), tostring(math.abs(testY - pointY)/avgGlobalY))
 	
 	if (hits < 4) then
-		if (((math.abs(testX - pointX)/avgGlobalX) > 3) or (math.abs(testY - pointY)/avgGlobalY)) then
+		if (((math.abs(testX - pointX)/avgGlobalX) > 3) or (math.abs(testY - pointY)/avgGlobalY) > 3) then
 			hits = hits + 1
 			ReturnTo(pointX, pointY)
 		end

@@ -513,10 +513,10 @@ function ReturnTo(pointX, pointY)
 	
 	Sleep(50)
 	testX, testY = GetMousePosition()
-	OutputLogMessage("DiffX = %s, DiffY = %s\n", tostring(math.abs(testX - pointX)/avgGlobalX), tostring(math.abs(testY - pointY)/avgGlobalY))
+	--OutputLogMessage("DiffX = %s, DiffY = %s\n", tostring(math.abs(testX - pointX)/avgGlobalX), tostring(math.abs(testY - pointY)/avgGlobalY))
 	
 	if (hits < 4) then
-		if (((math.abs(testX - pointX)/avgGlobalX) > 3) or (math.abs(testY - pointY)/avgGlobalY)) then
+		if (((math.abs(testX - pointX)/avgGlobalX) > 3) or (math.abs(testY - pointY)/avgGlobalY) > 3) then
 			hits = hits + 1
 			ReturnTo(pointX, pointY)
 		end
