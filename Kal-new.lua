@@ -62,19 +62,19 @@ pristDelay = 2 * 60 * 1000 + 30 * 1000
 pristTime = 0
 pristActive = 1
 
-prist1Use = true
+prist1Use = false
 prist1X = 27791
 prist1Y = 21928
 
-prist2Use = true
+prist2Use = false
 prist2X = 42272
 prist2Y = 18555
 
-prist3Use = true
+prist3Use = false
 prist3X = 49141
 prist3Y = 16056
 
-prist4Use = true
+prist4Use = false
 prist4X = 60422
 prist4Y = 14431
 
@@ -392,13 +392,13 @@ function RzucLa(pristUse, pristX, pristY)
 		ReturnTo(pristX, pristY) 
 		Sleep(100)
 		PressAndReleaseMouseButton(3)
-		--ClearLCD()
-		
 		local msg = GetDate("%X") .. " - Rzucilem na Prista: " .. tostring(pristActive)
 		LCDMessage(msg)
 		pristTime = GetRunningTime() + math.random( 60*1000 )
 	end
 
+	Sleep(300)
+	
 	if (pristActive < 5) then
 		pristActive = pristActive + 1
 	else
@@ -464,7 +464,6 @@ function GroupCure()
 		ReturnTo(mX, mY)
 		Sleep(100)
 		PressAndReleaseMouseButton(1)
-		--Sleep(3000)
 		groupCureTime = GetRunningTime() + math.random( 2000 )
 		maTime = groupRunningTime + groupCureMinDelay
 	end
@@ -484,33 +483,23 @@ end
 function Buffy()
 	if (buffyActiveCharX and buffyActiveCharY and maActiveSkillX and maActiveSkillY and skillBarDiff) then
 		for i, bNo in ipairs(buffyNo) do
-			--if (buffyTT[i] + buffyDelay < GetRunningTime()) then
-				if (maTime > GetRunningTime()) then
-					Sleep(maTime - GetRunningTime())
-				end
-				local cureX = maActiveSkillX
-				local cureY = maActiveSkillY + (bNo * skillBarDiff)
-				ReturnTo(cureX, cureY)
-				Sleep(100)
-				PressAndReleaseMouseButton(1)
-                Sleep(100)
-				maActiveSkillN = bNo
-				--OutputLogMessage("DiffX = %s, DiffY = %s\n", tostring(cureX), tostring(cureY))
-				--Sleep(5000)
-				ReturnTo(buffyActiveCharX , buffyActiveCharY)
-				Sleep(100)
-				PressAndReleaseMouseButton(3)
-				maTime = GetRunningTime() + buffyMinDelay + math.random( 2000 )
-				--Sleep(3600)
-				--buffyTT[i] = GetRunningTime()
-				local msg = GetDate("%X") .. "Rzucilem: " .. buffyName[i]
-				LCDMessage(msg)
-				--break
-			--end
+			if (maTime > GetRunningTime()) then
+				Sleep(maTime - GetRunningTime())
+			end
+			local cureX = maActiveSkillX
+			local cureY = maActiveSkillY + (bNo * skillBarDiff)
+			ReturnTo(cureX, cureY)
+			Sleep(100)
+			PressAndReleaseMouseButton(1)
+			Sleep(100)
+			maActiveSkillN = bNo
 			
-			--if (i == #buffyNo) then
-			--	buffyTime = GetRunningTime()
-			--end
+			ReturnTo(buffyActiveCharX , buffyActiveCharY)
+			Sleep(100)
+			PressAndReleaseMouseButton(3)
+			maTime = GetRunningTime() + buffyMinDelay + math.random( 2000 )
+			local msg = GetDate("%X") .. "Rzucilem: " .. buffyName[i]
+			LCDMessage(msg)
 		end
 		buffyTime = GetRunningTime() + math.random( 5*60*1000 )
 	end
