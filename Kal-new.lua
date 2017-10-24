@@ -52,7 +52,7 @@ inkaskaY = 48792
 fodDelay = 20 * 60 * 1000 + 1000
 --fodDelay = 40000
 
-pod1Use = true
+fod1Use = true
 fod1X = 40515
 fod1Y = 43482
 fod1Time = 0
@@ -111,12 +111,12 @@ cureChar1Y = nil
 cureChar2X = nil
 cureChar2Y = nil
 
-medytacjaUse = true
+medytacjaUse = false
 medytacjaDelay = 12 * 60 * 1000 + 30 * 1000 + 3000
 medytacjaTime = 0
 medytacjaN = 7 --15744
 
-buffyDelay = 0 * 23 * 60 * 1000 + 500
+buffyDelay = 23 * 60 * 1000 + 500
 buffyMinDelay = 3600
 buffyUse = true
 buffyTime = 0
@@ -177,7 +177,7 @@ function RunScript()
 			end
 
 			if (buffyUse) then
-				if (buffyTime + buffyDelay) < GetRunningTime()) then
+				if (buffyTime + buffyDelay < GetRunningTime()) then
 					Buffy()
 				end
 			end	
@@ -378,7 +378,7 @@ function RzucLa(pristUse, pristX, pristY)
 		pristTime = GetRunningTime() + math.random( 60*1000 )
 	end
 
-	if (pristActive < 5)
+	if (pristActive < 5) then
 		pristActive = pristActive + 1
 	else
 		pristActive = 1

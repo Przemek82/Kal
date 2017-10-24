@@ -29,8 +29,8 @@
 --	G9	Mag 2 Rzuc shni na gianta 2
 --	G10	Rzuc Buffy \ usun
 
-uzadzenie = "kb"
--- uzadzenie = "lhc"
+--uzadzenie = "kb"
+uzadzenie = "lhc"
 
 --monitor19
 avgGlobalX = 40.985023809524
@@ -304,7 +304,7 @@ function Mag1RzucNaGianta1()
 		Sleep(100)
 		PressAndReleaseMouseButton(3)
 		--ClearLCD()
-		local msg = GetDate("%X") .. " - Rzucilem Giant 1"
+		local msg = GetDate("%X") .. " - Rzucilem M1 Giant 1"
 		LCDMessage(msg)
 		mag1giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag1giantActive = 1
@@ -319,7 +319,7 @@ function Mag1RzucNaGianta2()
 		Sleep(100)
 		PressAndReleaseMouseButton(3)
 		--ClearLCD()
-		local msg = GetDate("%X") .. " - Rzucilem Giant 2"
+		local msg = GetDate("%X") .. " - Rzucilem M1 Giant 2"
 		LCDMessage(msg)
 		mag1giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag1giantActive = 2
@@ -334,7 +334,7 @@ function Mag1RzucNaGianta3()
 		Sleep(100)
 		PressAndReleaseMouseButton(3)
 		--ClearLCD()
-		local msg = GetDate("%X") .. " - Rzucilem Giant 3"
+		local msg = GetDate("%X") .. " - Rzucilem M1 Giant 3"
 		LCDMessage(msg)
 		mag1giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag1giantActive = 3
@@ -349,7 +349,7 @@ function Mag1RzucNaGianta4()
 		Sleep(100)
 		PressAndReleaseMouseButton(3)
 		--ClearLCD()
-		local msg = GetDate("%X") .. " - Rzucilem Giant 4"
+		local msg = GetDate("%X") .. " - Rzucilem M1 Giant 4"
 		LCDMessage(msg)
 		mag1giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag1giantActive = 4
@@ -364,7 +364,7 @@ function Mag1RzucNaGianta5()
 		Sleep(100)
 		PressAndReleaseMouseButton(3)
 		--ClearLCD()
-		local msg = GetDate("%X") .. " - Rzucilem Giant 5"
+		local msg = GetDate("%X") .. " - Rzucilem M1 Giant 5"
 		LCDMessage(msg)
 		mag1giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag1giantActive = 5
@@ -394,7 +394,7 @@ function Mag2RzucNaGianta1()
 		Sleep(100)
 		PressAndReleaseMouseButton(3)
 		--ClearLCD()
-		local msg = GetDate("%X") .. " - Rzucilem Giant 1"
+		local msg = GetDate("%X") .. " - Rzucilem M2 Giant 1"
 		LCDMessage(msg)
 		mag2giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag2giantActive = 1
@@ -409,7 +409,7 @@ function Mag2RzucNaGianta2()
 		Sleep(100)
 		PressAndReleaseMouseButton(3)
 		--ClearLCD()
-		local msg = GetDate("%X") .. " - Rzucilem Giant 2"
+		local msg = GetDate("%X") .. " - Rzucilem M2 Giant 2"
 		LCDMessage(msg)
 		mag2giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag2giantActive = 2
@@ -424,7 +424,7 @@ function Mag2RzucNaGianta3()
 		Sleep(100)
 		PressAndReleaseMouseButton(3)
 		--ClearLCD()
-		local msg = GetDate("%X") .. " - Rzucilem Giant 3"
+		local msg = GetDate("%X") .. " - Rzucilem M2 Giant 3"
 		LCDMessage(msg)
 		mag2giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag2giantActive = 3
@@ -439,7 +439,7 @@ function Mag2RzucNaGianta4()
 		Sleep(100)
 		PressAndReleaseMouseButton(3)
 		--ClearLCD()
-		local msg = GetDate("%X") .. " - Rzucilem Giant 4"
+		local msg = GetDate("%X") .. " - Rzucilem M2 Giant 4"
 		LCDMessage(msg)
 		mag2giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag2giantActive = 4
@@ -454,7 +454,7 @@ function Mag2RzucNaGianta5()
 		Sleep(100)
 		PressAndReleaseMouseButton(3)
 		--ClearLCD()
-		local msg = GetDate("%X") .. " - Rzucilem Giant 5"
+		local msg = GetDate("%X") .. " - Rzucilem M2 Giant 5"
 		LCDMessage(msg)
 		mag2giantTime = GetRunningTime() + math.random( 60*1000 )
 		mag2giantActive = 5
