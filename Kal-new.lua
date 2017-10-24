@@ -1,5 +1,3 @@
--- Czesc Krzysiu
--- hejka
 -- M1
 --	G1	Start
 --	G10	Leczenie off
@@ -38,7 +36,6 @@ avgGlobalX = 40.985023809524
 avgGlobalY = 72.881376984127
 hits = 0
 
---pause = true
 eXecute = true
 msgDelay = 5000
 msgTime = 0
@@ -50,7 +47,6 @@ inkaskaX = 64481
 inkaskaY = 48792
 
 fodDelay = 20 * 60 * 1000 + 1000
---fodDelay = 40000
 
 fod1Use = true
 fod1X = 40515
@@ -63,7 +59,6 @@ fod2Y = 43669
 fod2Time = 0
 
 pristDelay = 2 * 60 * 1000 + 30 * 1000
---pristDelay = 5000
 pristTime = 0
 pristActive = 1
 
@@ -114,19 +109,15 @@ cureChar2Y = nil
 medytacjaUse = false
 medytacjaDelay = 12 * 60 * 1000 + 30 * 1000 + 3000
 medytacjaTime = 0
-medytacjaN = 7 --15744
+medytacjaN = 7
 
 buffyDelay = 23 * 60 * 1000 + 500
 buffyMinDelay = 3600
 buffyUse = true
 buffyTime = 0
---def = 5 --10558
---agi = 6 --13057
---hp = 8 --18305
---speed = 4 --7934
+
 buffyName 	= { "def",	"agi", "hp", "speed"}
-buffyNo 	= { 	5,		6,	  8, 	  4} 
---buffyNo 	= { 	1,		2,	  3, 	  4}
+buffyNo 	= { 	5,		6,	  8, 	  4}
 buffyTT 	= { 	0,		0,	  0, 	  0} 
 
 buffyActiveCharX = nil
@@ -139,11 +130,10 @@ function RunScript()
 
 	ClearLCD()
 	local msg = GetDate("%X") .. "   Program dziala - " .. GetRunningTime()
-	--while not (pause) do
+	
 	while true do
 		if not (GetMKeyState(uzadzenie) == 1) then
 			eXecute = false
-			--pause = true
 			break
 		end
 		
@@ -181,8 +171,6 @@ function RunScript()
 					Buffy()
 				end
 			end	
-			
-			
 			
 			if (cureUse) then
 				if (maTime < GetRunningTime()) then
@@ -228,14 +216,17 @@ function OnEvent(event, arg)
 				cureUse = false
 				groupCureUse = false
 				LCDMessage("Cure and GC Dsabled")
+
 			elseif (arg == 11) then
 				cureUse = true
 				groupCureUse = false
 				LCDMessage("Cure Enabled")
+
 			elseif (arg == 12) then
 				cureUse = false
 				groupCureUse = true
 				LCDMessage("Group Cure Enabled")
+
 			end
 			
 		elseif (mkey == 2) then
@@ -243,81 +234,111 @@ function OnEvent(event, arg)
 				-- inkaska
 				inkaskaX, inkaskaY = GetMousePosition()
 				LCDMessage("Inkaska (" .. inkaskaX .. ", " .. inkaskaY .. ")")
+
 			elseif (arg == 2) then
 				-- FOD1
 				fod1X, fod1Y = GetMousePosition()
 				LCDMessage("FOD1 (" .. fod1X .. ", " .. fod1Y .. ")")
+
 			elseif (arg == 3) then
 				-- FOD2
 				fod2X, fod2Y = GetMousePosition()
 				LCDMessage("FOD2 (" .. fod2X .. ", " .. fod2Y .. ")")
+
 			elseif (arg == 4) then
 				-- Prist 1
+				prist1Use = true
 				prist1X, prist1Y = GetMousePosition()
 				LCDMessage("Priest 1 (" .. prist1X .. ", " .. prist1Y .. ")")
+
 			elseif (arg == 5) then
 				-- Prist 2
+				prist2Use = true
 				prist2X, prist2Y = GetMousePosition()
 				LCDMessage("Priest 2 (" .. prist2X .. ", " .. prist2Y .. ")")
+
 			elseif (arg == 6) then
 				-- Prist 3
+				prist3Use = true
 				prist3X, prist3Y = GetMousePosition()
 				LCDMessage("Priest 3 (" .. prist3X .. ", " .. prist3Y .. ")")
+
 			elseif (arg == 7) then
 				-- Prist 4
+				prist4Use = true
 				prist4X, prist4Y = GetMousePosition()
 				LCDMessage("Priest 4 (" .. prist4X .. ", " .. prist4Y .. ")")
+
 			elseif (arg == 8) then
 				-- Prist 5
+				prist5Use = true
 				prist5X, prist5Y = GetMousePosition()
 				LCDMessage("Priest 5 (" .. prist5X .. ", " .. prist5Y .. ")")
+
 			elseif (arg == 9) then
 				-- PT Buffer Active Char
 				buffyActiveCharX, buffyActiveCharY = GetMousePosition()
 				LCDMessage("Buffy (" .. buffyActiveCharX .. ", " .. buffyActiveCharY .. ")")
 				OutputLogMessage("DiffX = %s, DiffY = %s\n", tostring(buffyActiveCharX), tostring(buffyActiveCharY))
+
 			elseif (arg == 10) then
 				-- MA Active Skill
 				maActiveSkillX, maActiveSkillY = GetMousePosition()
 				LCDMessage("MA Active Skill (" .. maActiveSkillX .. ", " .. maActiveSkillY .. ")")
+
 			elseif (arg == 11) then
 				-- PT Hercio
 				cureChar1X, cureChar1Y = GetMousePosition()
 				LCDMessage("Cure char 1 (" .. cureChar1X .. ", " .. cureChar1Y .. ")")
+
 			elseif (arg == 12) then
 				-- PT Freskos
 				cureChar2X, cureChar2Y = GetMousePosition()
 				LCDMessage("Cure char 2 (" .. cureChar2X .. ", " .. cureChar2Y .. ")")
+
 			end
 			
 		elseif (mkey == 3) then
 			if (arg == 2) then
 				fod1Use = true
 				RzucFod1()
+
 			elseif (arg == 3) then
 				fod2Use = true
 				RzucFod2()
+
 			elseif (arg == 4) then
 				prist1Use = true
-				RzucLa(prist1Use, prist1X, prist1Y)
+				pristActive = 1
+				RzucNaPrista()
 			elseif (arg == 5) then
 				prist2Use = true
-				RzucLa(prist2Use, prist2X, prist2Y)
+				pristActive = 2
+				RzucNaPrista()
+
 			elseif (arg == 6) then
 				prist3Use = true
-				RzucLa(prist3Use, prist3X, prist3Y)
+				pristActive = 3
+				RzucNaPrista()
+
 			elseif (arg == 7) then
 				prist4Use = true
-				RzucLa(prist4Use, prist4X, prist4Y)
+				pristActive = 4
+				RzucNaPrista()
+				
 			elseif (arg == 8) then
 				prist5Use = true
-				RzucLa(prist5Use, prist5X, prist5Y)
+				pristActive = 5
+				RzucNaPrista()
+
 			elseif (arg == 9) then
 				medytacjaUse = true
 				Medytacja()
+
 			elseif (arg == 10) then
 				buffyUse = true
 				Buffy()
+
 			end
 		end
 	end
