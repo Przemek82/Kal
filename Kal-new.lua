@@ -32,8 +32,8 @@
 --	G9	Uzyj Medytacji
 --	G10	Rzuc Buffy
 
-uzadzenie = "kb"
--- uzadzenie = "lhc"
+--uzadzenie = "kb"
+uzadzenie = "lhc"
 avgGlobalX = 40.985023809524 
 avgGlobalY = 72.881376984127
 hits = 0
@@ -491,7 +491,7 @@ function Buffy()
 			--	buffyTime = GetRunningTime()
 			--end
 		end
-		buffyTime = GetRunningTime() + math.random( 5*60*1000 )
+		buffyTime = GetRunningTime() + math.random( 2*60*1000 )
 	end
 end
 
